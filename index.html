@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Smile Dental Clinic – Indore</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Nunito:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --primary: #0A7AFF;
+    --primary-dark: #0060d4;
+    --secondary: #E8F3FF;
+    --accent: #00C2A8;
+    --highlight: #FFD166;
+    --bg: #FFFFFF;
+    --text: #1a2340;
+    --text-soft: #5a6480;
+    --radius: 18px;
+    --shadow: 0 8px 32px rgba(10,122,255,0.10);
+    --shadow-hover: 0 16px 48px rgba(10,122,255,0.18);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; color: var(--text); background: var(--bg); overflow-x: hidden; }
+  h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+    box-shadow: 0 2px 20px rgba(10,122,255,0.08);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-icon { width: 40px; height: 40px; background: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+  .nav-logo-icon i { color: #fff; font-size: 20px; }
+  .nav-logo-text { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--primary); }
+  .nav-logo-text span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.92rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-cta { background: var(--primary); color: #fff; padding: 10px 22px; border-radius: 50px; font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: all 0.2s; white-space: nowrap; }
+  .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(10,122,255,0.3); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2.5px; background: var(--primary); border-radius: 4px; transition: all 0.3s; }
+  .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: #fff; padding: 20px 5%; z-index: 998; box-shadow: 0 8px 24px rgba(0,0,0,0.1); flex-direction: column; gap: 16px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { text-decoration: none; color: var(--text); font-weight: 600; padding: 8px 0; border-bottom: 1px solid #f0f4ff; }
+
+  /* HERO */
+  .hero {
+    padding: 130px 5% 80px;
+    background: linear-gradient(135deg, #EEF6FF 0%, #F8FBFF 60%, #E8FAF8 100%);
+    display: flex; align-items: center; gap: 60px; min-height: 100vh;
+    position: relative; overflow: hidden;
+  }
+  .hero-blob1 { position: absolute; top: -80px; right: -80px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(10,122,255,0.12) 0%, transparent 70%); border-radius: 50%; }
+  .hero-blob2 { position: absolute; bottom: -60px; left: -60px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(0,194,168,0.12) 0%, transparent 70%); border-radius: 50%; }
+  .hero-blob3 { position: absolute; top: 40%; left: 40%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,209,102,0.1) 0%, transparent 70%); border-radius: 50%; }
+  .hero-text { flex: 1; min-width: 0; position: relative; z-index: 2; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(10,122,255,0.1); color: var(--primary); padding: 7px 16px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; margin-bottom: 24px; }
+  .hero-badge i { color: var(--accent); }
+  .hero h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 800; line-height: 1.15; color: var(--text); margin-bottom: 20px; }
+  .hero h1 span { color: var(--primary); }
+  .hero p { font-size: 1.05rem; color: var(--text-soft); line-height: 1.8; margin-bottom: 36px; max-width: 480px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary { background: var(--primary); color: #fff; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s; box-shadow: 0 6px 24px rgba(10,122,255,0.3); }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(10,122,255,0.4); }
+  .btn-outline { background: #fff; color: var(--text); padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.25s; border: 2px solid #e0eaff; }
+  .btn-outline:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+  .hero-stats { display: flex; gap: 32px; margin-top: 40px; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Poppins', sans-serif; font-size: 1.7rem; font-weight: 800; color: var(--primary); }
+  .stat-label { font-size: 0.8rem; color: var(--text-soft); font-weight: 600; }
+  .hero-img { flex: 1; min-width: 0; display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; }
+  .hero-img-wrap { position: relative; }
+  .hero-img-wrap img { width: 100%; max-width: 480px; border-radius: 30px; box-shadow: 0 24px 60px rgba(10,122,255,0.2); display: block; object-fit: cover; height: 480px; }
+  .hero-card-float { position: absolute; background: #fff; border-radius: 16px; padding: 12px 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); display: flex; align-items: center; gap: 12px; }
+  .hero-card-float.card1 { top: 30px; left: -50px; animation: floatUp 3s ease-in-out infinite; }
+  .hero-card-float.card2 { bottom: 40px; right: -40px; animation: floatUp 3s ease-in-out infinite 1.5s; }
+  .hero-card-float .card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+  .card-icon.blue { background: #EEF6FF; }
+  .card-icon.green { background: #E6FAF8; }
+  .card-icon.blue i { color: var(--primary); }
+  .card-icon.green i { color: var(--accent); }
+  .hero-card-float .card-label { font-size: 0.75rem; color: var(--text-soft); }
+  .hero-card-float .card-val { font-family: 'Poppins', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text); }
+  @keyframes floatUp { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+  /* WAVE */
+  .wave-divider { display: block; width: 100%; line-height: 0; }
+
+  /* TRUST */
+  .trust { background: var(--primary); padding: 60px 5%; }
+  .trust-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .trust-card { background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius); padding: 28px 22px; text-align: center; transition: all 0.3s; }
+  .trust-card:hover { background: rgba(255,255,255,0.2); transform: translateY(-4px); }
+  .trust-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+  .trust-icon i { color: #fff; font-size: 22px; }
+  .trust-card h4 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .trust-card p { color: rgba(255,255,255,0.75); font-size: 0.85rem; line-height: 1.6; }
+
+  /* SECTION COMMON */
+  section { padding: 90px 5%; }
+  .section-label { display: inline-block; background: var(--secondary); color: var(--primary); padding: 6px 16px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; margin-bottom: 14px; }
+  .section-title { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; color: var(--text); line-height: 1.2; margin-bottom: 14px; }
+  .section-sub { font-size: 1rem; color: var(--text-soft); max-width: 520px; line-height: 1.7; }
+  .section-header { text-align: center; margin-bottom: 52px; }
+  .section-header .section-sub { margin: 0 auto; }
+
+  /* ABOUT */
+  .about { background: #fff; }
+  .about-inner { display: flex; gap: 70px; align-items: center; max-width: 1100px; margin: 0 auto; }
+  .about-img { flex: 1; min-width: 0; }
+  .about-img-wrap { position: relative; }
+  .about-img-wrap img { width: 100%; border-radius: 24px; box-shadow: var(--shadow); display: block; object-fit: cover; height: 420px; }
+  .about-badge { position: absolute; bottom: -20px; right: -20px; background: var(--primary); color: #fff; padding: 16px 22px; border-radius: 18px; text-align: center; box-shadow: 0 8px 24px rgba(10,122,255,0.3); }
+  .about-badge .num { font-size: 2rem; font-weight: 800; display: block; }
+  .about-badge .label { font-size: 0.78rem; opacity: 0.85; }
+  .about-text { flex: 1.1; min-width: 0; }
+  .about-text p { color: var(--text-soft); line-height: 1.8; margin-bottom: 16px; font-size: 0.97rem; }
+  .about-checks { list-style: none; margin: 24px 0 32px; display: flex; flex-direction: column; gap: 12px; }
+  .about-checks li { display: flex; align-items: center; gap: 12px; color: var(--text); font-weight: 600; font-size: 0.95rem; }
+  .about-checks li i { color: var(--accent); font-size: 16px; background: #E6FAF8; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  /* SERVICES */
+  .services { background: #F7FAFF; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .service-card { background: #fff; border-radius: var(--radius); padding: 34px 28px; transition: all 0.3s; border: 2px solid transparent; cursor: pointer; }
+  .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--primary); }
+  .svc-icon { width: 60px; height: 60px; border-radius: 16px; background: var(--secondary); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; transition: all 0.3s; }
+  .service-card:hover .svc-icon { background: var(--primary); }
+  .svc-icon i { font-size: 24px; color: var(--primary); transition: all 0.3s; }
+  .service-card:hover .svc-icon i { color: #fff; }
+  .service-card h3 { font-size: 1.08rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .service-card p { font-size: 0.88rem; color: var(--text-soft); line-height: 1.7; }
+  .svc-arrow { display: inline-flex; align-items: center; gap: 6px; color: var(--primary); font-size: 0.85rem; font-weight: 700; margin-top: 14px; }
+
+  /* BOOKING */
+  .booking { background: linear-gradient(135deg, #EEF6FF, #F0FBF9); }
+  .booking-inner { display: flex; gap: 70px; align-items: flex-start; max-width: 1100px; margin: 0 auto; }
+  .booking-info { flex: 1; }
+  .booking-info h2 { font-size: 2rem; font-weight: 800; color: var(--text); margin-bottom: 16px; }
+  .booking-info p { color: var(--text-soft); line-height: 1.8; margin-bottom: 28px; }
+  .booking-features { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .booking-features li { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.93rem; }
+  .booking-features li i { color: var(--accent); font-size: 18px; }
+  .booking-form { flex: 1.2; background: #fff; border-radius: 24px; padding: 40px; box-shadow: var(--shadow); }
+  .booking-form h3 { font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 28px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .form-group label { font-size: 0.87rem; font-weight: 700; color: var(--text); }
+  .form-group input, .form-group textarea, .form-group select {
+    padding: 12px 16px; border: 2px solid #e8eef8; border-radius: 12px;
+    font-family: 'Nunito', sans-serif; font-size: 0.93rem; color: var(--text);
+    transition: border-color 0.2s; outline: none; background: #FAFCFF;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: #fff; }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .btn-submit { width: 100%; background: var(--primary); color: #fff; border: none; padding: 15px; border-radius: 12px; font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.25s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .btn-submit:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10,122,255,0.3); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: #fff; }
+  .rating-banner { text-align: center; margin-bottom: 44px; }
+  .rating-stars { font-size: 1.6rem; color: #FFB800; margin-bottom: 8px; }
+  .rating-text { font-size: 1rem; color: var(--text-soft); font-weight: 600; }
+  .rating-text strong { color: var(--primary); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .testi-card { background: #FAFCFF; border-radius: var(--radius); padding: 30px; border: 2px solid #EEF3FF; transition: all 0.3s; }
+  .testi-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); border-color: var(--primary); }
+  .testi-stars { color: #FFB800; font-size: 0.9rem; margin-bottom: 14px; }
+  .testi-text { font-size: 0.93rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--secondary); display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; font-weight: 800; color: var(--primary); font-size: 1rem; }
+  .testi-name { font-weight: 700; font-size: 0.95rem; color: var(--text); }
+  .testi-loc { font-size: 0.8rem; color: var(--text-soft); }
+
+  /* GALLERY */
+  .gallery { background: #F7FAFF; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
+  .gallery-item { border-radius: 14px; overflow: hidden; aspect-ratio: 4/3; position: relative; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-item-large { grid-column: span 2; aspect-ratio: 16/9; }
+
+  /* BEFORE AFTER */
+  .transform { background: #fff; }
+  .ba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .ba-card { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .ba-card img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform 0.4s; }
+  .ba-card:hover img { transform: scale(1.05); }
+  .ba-label { background: #fff; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; }
+  .ba-tag { font-size: 0.78rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; }
+  .ba-tag.before { background: #fff0f0; color: #e85555; }
+  .ba-tag.after { background: #e6faf8; color: var(--accent); }
+
+  /* MAP */
+  .map-section { background: var(--secondary); padding: 80px 5%; }
+  .map-inner { max-width: 1100px; margin: 0 auto; }
+  .map-wrap { border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); }
+  .map-wrap iframe { width: 100%; height: 380px; border: none; display: block; }
+
+  /* FAQ */
+  .faq { background: #fff; }
+  .faq-inner { max-width: 760px; margin: 0 auto; }
+  .faq-item { border: 2px solid #EEF3FF; border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
+  .faq-q { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; font-size: 0.97rem; color: var(--text); transition: background 0.2s; gap: 16px; }
+  .faq-q:hover { background: #F7FAFF; }
+  .faq-q.active { background: var(--secondary); color: var(--primary); }
+  .faq-icon { width: 28px; height: 28px; background: var(--secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+  .faq-q.active .faq-icon { background: var(--primary); }
+  .faq-icon i { color: var(--primary); font-size: 12px; transition: all 0.3s; }
+  .faq-q.active .faq-icon i { color: #fff; transform: rotate(45deg); }
+  .faq-a { padding: 0 24px; max-height: 0; overflow: hidden; transition: all 0.3s ease; color: var(--text-soft); font-size: 0.93rem; line-height: 1.7; }
+  .faq-a.open { max-height: 200px; padding: 0 24px 20px; }
+
+  /* FOOTER */
+  footer { background: #0d1a36; color: #fff; padding: 70px 5% 30px; }
+  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 52px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+  .footer-brand p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.8; margin: 16px 0 24px; }
+  .footer-social { display: flex; gap: 12px; }
+  .social-btn { width: 38px; height: 38px; background: rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; transition: all 0.2s; text-decoration: none; }
+  .social-btn:hover { background: var(--primary); transform: translateY(-2px); }
+  .footer-col h4 { font-size: 1rem; font-weight: 700; margin-bottom: 20px; color: #fff; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+  .footer-col ul li a:hover { color: var(--highlight); }
+  .footer-col ul li a i { font-size: 10px; color: var(--accent); }
+  .contact-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+  .contact-item i { color: var(--accent); font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+  .contact-item span { color: rgba(255,255,255,0.7); font-size: 0.88rem; line-height: 1.6; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; text-align: center; color: rgba(255,255,255,0.45); font-size: 0.84rem; max-width: 1100px; margin: 0 auto; }
+  .footer-logo-text { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.5rem; color: #fff; }
+  .footer-logo-text span { color: var(--accent); }
+
+  /* FLOATING BUTTONS */
+  .fab-whatsapp {
+    position: fixed; bottom: 90px; right: 24px; z-index: 1000;
+    width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.45); text-decoration: none;
+    transition: all 0.25s; animation: pulse-green 2.5s infinite;
+  }
+  .fab-whatsapp:hover { transform: scale(1.1); }
+  .fab-whatsapp i { color: #fff; font-size: 26px; }
+  @keyframes pulse-green {
+    0%,100%{ box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
+    50%{ box-shadow: 0 6px 36px rgba(37,211,102,0.7); }
+  }
+  .fab-call {
+    position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+    width: 58px; height: 58px; background: var(--primary); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 24px rgba(10,122,255,0.4); text-decoration: none;
+    transition: all 0.25s; animation: pulse-blue 2.5s infinite 0.5s;
+  }
+  .fab-call:hover { transform: scale(1.1); }
+  .fab-call i { color: #fff; font-size: 24px; }
+  @keyframes pulse-blue {
+    0%,100%{ box-shadow: 0 6px 24px rgba(10,122,255,0.4); }
+    50%{ box-shadow: 0 6px 36px rgba(10,122,255,0.65); }
+  }
+  .sticky-call-bar {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 997;
+    background: var(--primary); color: #fff; text-align: center;
+    padding: 14px; font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 1rem; text-decoration: none; gap: 10px; align-items: center; justify-content: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .trust-grid { grid-template-columns: repeat(2,1fr); }
+    .services-grid { grid-template-columns: repeat(2,1fr); }
+    .testi-grid { grid-template-columns: repeat(2,1fr); }
+    .gallery-grid { grid-template-columns: repeat(2,1fr); }
+    .gallery-item-large { grid-column: span 2; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .ba-grid { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero { flex-direction: column; padding: 100px 4% 60px; min-height: auto; text-align: center; gap: 40px; }
+    .hero p { margin: 0 auto 36px; }
+    .hero-btns { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .hero-img-wrap img { height: 340px; }
+    .hero-card-float.card1 { left: 10px; top: 20px; }
+    .hero-card-float.card2 { right: 10px; bottom: 20px; }
+    .trust-grid { grid-template-columns: repeat(2,1fr); }
+    .about-inner { flex-direction: column; gap: 40px; }
+    .about-img-wrap img { height: 300px; }
+    .booking-inner { flex-direction: column; }
+    .form-row { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2,1fr); }
+    .ba-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .sticky-call-bar { display: flex; }
+    .fab-call, .fab-whatsapp { bottom: 76px; }
+    .fab-whatsapp { bottom: 136px; }
+    section { padding: 60px 4%; }
+  }
+  @media (max-width: 480px) {
+    .trust-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item-large { grid-column: span 1; }
+    .hero-card-float { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon"><i class="fa-solid fa-tooth"></i></div>
+    <span class="nav-logo-text">Dr.<span>Smile</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta"><i class="fa-regular fa-calendar-check"></i> Book Appointment</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#booking" onclick="toggleMenu()" style="color:var(--primary)">📅 Book Appointment</a>
+  <a href="tel:9111888227" style="color:var(--accent)"><i class="fa-solid fa-phone"></i> 9111888227</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-blob3"></div>
+  <div class="hero-text">
+    <div class="hero-badge"><i class="fa-solid fa-star"></i> Trusted Dental Clinic in Indore</div>
+    <h1>Healthy Teeth,<br><span>Happy Smiles</span> 😁</h1>
+    <p>Dr. Smile provides advanced and comfortable dental treatments in Indore to help you achieve a confident and healthy smile.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary"><i class="fa-regular fa-calendar-check"></i> Book Appointment</a>
+      <a href="tel:9111888227" class="btn-outline"><i class="fa-solid fa-phone"></i> Call Now</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">170+</div><div class="stat-label">Happy Patients</div></div>
+      <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Rating</div></div>
+      <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Treatments</div></div>
+    </div>
+  </div>
+  <div class="hero-img">
+    <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Happy patient at Dr. Smile dental clinic">
+      <div class="hero-card-float card1">
+        <div class="card-icon blue"><i class="fa-solid fa-shield-halved"></i></div>
+        <div><div class="card-label">Safe & Painless</div><div class="card-val">Advanced Care</div></div>
+      </div>
+      <div class="hero-card-float card2">
+        <div class="card-icon green"><i class="fa-solid fa-tooth"></i></div>
+        <div><div class="card-label">Today's Slot</div><div class="card-val">Available ✓</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<svg class="wave-divider" viewBox="0 0 1440 50" preserveAspectRatio="none" style="background:#F7FAFF;"><path fill="#0A7AFF" d="M0,30 C360,60 1080,0 1440,30 L1440,0 L0,0 Z"/></svg>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-icon"><i class="fa-solid fa-microscope"></i></div>
+      <h4>Modern Equipment</h4>
+      <p>State-of-the-art dental technology for accurate diagnosis and effective treatments.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+      <h4>Comfortable Treatments</h4>
+      <p>Painless procedures in a relaxing environment so you always feel at ease.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon"><i class="fa-solid fa-user-doctor"></i></div>
+      <h4>Experienced Care</h4>
+      <p>Highly skilled dental professionals dedicated to exceptional patient outcomes.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-icon"><i class="fa-solid fa-star"></i></div>
+      <h4>Trusted Locally</h4>
+      <p>Trusted by 170+ happy patients across Indore with a 4.9-star rating.</p>
+    </div>
+  </div>
+</div>
+<svg class="wave-divider" viewBox="0 0 1440 50" preserveAspectRatio="none" style="background:#0A7AFF;"><path fill="#fff" d="M0,20 C360,50 1080,0 1440,20 L1440,50 L0,50 Z"/></svg>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-img">
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=600&q=80" alt="Dr. Smile Dental Clinic Interior">
+        <div class="about-badge">
+          <span class="num">8+</span>
+          <span class="label">Years of<br>Excellence</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-label">About Us</span>
+      <h2 class="section-title">Welcome to <span style="color:var(--primary)">Dr. Smile</span> Dental Clinic</h2>
+      <p>Dr. Smile Dental Clinic in Indore is dedicated to providing modern and comfortable dental treatments with a patient-first approach. We believe that a healthy smile is the gateway to confidence and well-being.</p>
+      <p>Our clinic focuses on maintaining healthy smiles through advanced dental technology and personalized care plans tailored to each patient's unique needs — from routine checkups to complete smile makeovers.</p>
+      <ul class="about-checks">
+        <li><i class="fa-solid fa-check"></i> Comprehensive dental care for all ages</li>
+        <li><i class="fa-solid fa-check"></i> Painless treatments with modern anesthesia</li>
+        <li><i class="fa-solid fa-check"></i> Clean, sterilized, and hygienic environment</li>
+        <li><i class="fa-solid fa-check"></i> Flexible appointments including weekends</li>
+      </ul>
+      <a href="#booking" class="btn-primary" style="display:inline-flex"><i class="fa-regular fa-calendar-check"></i> Book a Visit</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <span class="section-label">Our Treatments</span>
+    <h2 class="section-title">Dental Services We Offer</h2>
+    <p class="section-sub">From preventive care to complete smile transformations — we've got your dental health covered.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-icon"><i class="fa-solid fa-brush"></i></div>
+      <h3>Teeth Cleaning</h3>
+      <p>Professional cleaning to remove plaque, tartar, and stains for a brighter, healthier mouth.</p>
+      <div class="svc-arrow"><i class="fa-solid fa-arrow-right"></i> Learn More</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon"><i class="fa-solid fa-tooth"></i></div>
+      <h3>Root Canal Treatment</h3>
+      <p>Painless root canal procedures using advanced techniques to save infected or damaged teeth.</p>
+      <div class="svc-arrow"><i class="fa-solid fa-arrow-right"></i> Learn More</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon"><i class="fa-regular fa-sun"></i></div>
+      <h3>Teeth Whitening</h3>
+      <p>Professional-grade whitening treatments for a dazzling, confident smile in just one visit.</p>
+      <div class="svc-arrow"><i class="fa-solid fa-arrow-right"></i> Learn More</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+      <h3>Dental Implants</h3>
+      <p>Permanent, natural-looking implants to replace missing teeth and restore full function.</p>
+      <div class="svc-arrow"><i class="fa-solid fa-arrow-right"></i> Learn More</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon"><i class="fa-solid fa-align-center"></i></div>
+      <h3>Braces & Aligners</h3>
+      <p>Traditional braces and clear aligners to straighten teeth comfortably and discreetly.</p>
+      <div class="svc-arrow"><i class="fa-solid fa-arrow-right"></i> Learn More</div>
+    </div>
+    <div class="service-card">
+      <div class="svc-icon"><i class="fa-regular fa-star"></i></div>
+      <h3>Smile Makeover</h3>
+      <p>Complete aesthetic transformation combining multiple treatments for your dream smile.</p>
+      <div class="svc-arrow"><i class="fa-solid fa-arrow-right"></i> Learn More</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="booking-inner">
+    <div class="booking-info">
+      <span class="section-label">Appointments</span>
+      <h2>Book Your Dental<br>Appointment</h2>
+      <p>Schedule your visit at Dr. Smile Dental Clinic in Indore. We offer flexible timings to fit your schedule.</p>
+      <ul class="booking-features">
+        <li><i class="fa-solid fa-check-circle"></i> Instant Confirmation</li>
+        <li><i class="fa-solid fa-check-circle"></i> Morning & Evening Slots Available</li>
+        <li><i class="fa-solid fa-check-circle"></i> No Hidden Charges</li>
+        <li><i class="fa-solid fa-check-circle"></i> Free Initial Consultation</li>
+        <li><i class="fa-solid fa-check-circle"></i> Weekend Appointments Available</li>
+      </ul>
+      <div style="margin-top:32px;padding:20px;background:rgba(10,122,255,0.08);border-radius:14px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+          <i class="fa-solid fa-phone" style="color:var(--primary);font-size:20px;"></i>
+          <strong style="font-size:1.1rem;">9111888227</strong>
+        </div>
+        <p style="font-size:0.87rem;color:var(--text-soft);margin:0;">Call us directly for urgent appointments</p>
+      </div>
+    </div>
+    <div class="booking-form">
+      <h3><i class="fa-regular fa-calendar-check" style="color:var(--primary);margin-right:8px;"></i>Fill Appointment Form</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Preferred Date *</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select>
+            <option value="">Select a service</option>
+            <option>Teeth Cleaning</option>
+            <option>Root Canal Treatment</option>
+            <option>Teeth Whitening</option>
+            <option>Dental Implants</option>
+            <option>Braces & Aligners</option>
+            <option>Smile Makeover</option>
+            <option>General Checkup</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Additional Message</label>
+        <textarea placeholder="Describe your concern or any special requirements..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="handleBooking()"><i class="fa-solid fa-paper-plane"></i> Book Appointment</button>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-header">
+    <span class="section-label">Patient Reviews</span>
+    <h2 class="section-title">What Our Patients Say</h2>
+  </div>
+  <div class="rating-banner">
+    <div class="rating-stars">★★★★★</div>
+    <div class="rating-text"><strong>4.9 Rating</strong> from <strong>170+</strong> Happy Patients in Indore</div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Best dental clinic in Indore! The root canal treatment was completely painless. The team is so friendly and professional. I'm no longer scared of dental visits thanks to Dr. Smile!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">PR</div>
+        <div>
+          <div class="testi-name">Priya Rathore</div>
+          <div class="testi-loc">Vijay Nagar, Indore</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Got my teeth whitening done here and the results are amazing! The clinic is super clean and modern. Doctor explains everything clearly. Highly recommended for anyone in Indore!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AS</div>
+        <div>
+          <div class="testi-name">Aditya Sharma</div>
+          <div class="testi-loc">Scheme 78, Indore</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"My daughter was terrified of dentists but Dr. Smile's team made her so comfortable. Got braces done here. Excellent experience throughout. The staff is warm and caring. 5 stars!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">NK</div>
+        <div>
+          <div class="testi-name">Neha Kulkarni</div>
+          <div class="testi-loc">Palasia, Indore</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SMILE TRANSFORMATION -->
+<section class="transform" id="transform">
+  <div class="section-header">
+    <span class="section-label">Smile Gallery</span>
+    <h2 class="section-title">Smile Transformation</h2>
+    <p class="section-sub">Real results from our patients — see the incredible smile transformations we've achieved.</p>
+  </div>
+  <div class="ba-grid">
+    <div class="ba-card">
+      <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=500&q=80" alt="Smile transformation 1">
+      <div class="ba-label">
+        <span>Teeth Whitening</span>
+        <div><span class="ba-tag before">Before</span> → <span class="ba-tag after">After</span></div>
+      </div>
+    </div>
+    <div class="ba-card">
+      <img src="https://images.unsplash.com/photo-1598257006626-48b0c252070d?w=500&q=80" alt="Smile transformation 2">
+      <div class="ba-label">
+        <span>Smile Makeover</span>
+        <div><span class="ba-tag before">Before</span> → <span class="ba-tag after">After</span></div>
+      </div>
+    </div>
+    <div class="ba-card">
+      <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=500&q=80" alt="Smile transformation 3">
+      <div class="ba-label">
+        <span>Dental Implants</span>
+        <div><span class="ba-tag before">Before</span> → <span class="ba-tag after">After</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-header">
+    <span class="section-label">Our Clinic</span>
+    <h2 class="section-title">Our Dental Clinic</h2>
+    <p class="section-sub">A modern, comfortable, and hygienic dental environment designed for your well-being.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-item-large">
+      <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="Dental clinic interior">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=500&q=80" alt="Dental chair">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1626428091248-c0d5c52ac6b3?w=500&q=80" alt="Modern dental equipment">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=500&q=80" alt="Patient care">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1598257006626-48b0c252070d?w=500&q=80" alt="Dental treatment">
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-section" id="location">
+  <div class="map-inner">
+    <div class="section-header">
+      <span class="section-label">Find Us</span>
+      <h2 class="section-title">Visit Dr. Smile in Indore</h2>
+      <p class="section-sub">Easily accessible location in Indore. Come visit us for your dental care needs.</p>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117838.66069296303!2d75.81116!3d22.7195687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fcad1b410ddb%3A0x96ec4da356240f4!2sIndore%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1699001234567!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Dr. Smile Dental Clinic Location - Indore"></iframe>
+    </div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:32px;">
+      <div style="background:#fff;padding:16px 24px;border-radius:14px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);">
+        <i class="fa-solid fa-location-dot" style="color:var(--primary);font-size:20px;"></i>
+        <div><strong>Address</strong><br><span style="color:var(--text-soft);font-size:0.87rem;">Indore, Madhya Pradesh, India</span></div>
+      </div>
+      <div style="background:#fff;padding:16px 24px;border-radius:14px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);">
+        <i class="fa-solid fa-phone" style="color:var(--accent);font-size:20px;"></i>
+        <div><strong>Phone</strong><br><a href="tel:9111888227" style="color:var(--text-soft);font-size:0.87rem;text-decoration:none;">9111888227</a></div>
+      </div>
+      <div style="background:#fff;padding:16px 24px;border-radius:14px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);">
+        <i class="fa-regular fa-clock" style="color:var(--highlight);font-size:20px;"></i>
+        <div><strong>Hours</strong><br><span style="color:var(--text-soft);font-size:0.87rem;">Mon–Sat: 9AM – 8PM</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-header">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub">Have questions about your dental treatment? We've answered the most common ones below.</p>
+  </div>
+  <div class="faq-inner">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is root canal treatment painful?
+        <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+      </div>
+      <div class="faq-a">Modern root canal treatment is performed under local anesthesia and is virtually painless. With advanced techniques used at Dr. Smile, most patients report feeling little to no discomfort during the procedure. You may experience mild soreness afterward, which subsides within a day or two.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How long does teeth whitening take?
+        <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+      </div>
+      <div class="faq-a">Professional in-clinic teeth whitening at Dr. Smile typically takes about 45–60 minutes for a single session. Most patients see noticeable results immediately after the first treatment. For best results, we may recommend a take-home maintenance kit as well.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How often should I visit the dentist?
+        <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+      </div>
+      <div class="faq-a">We recommend visiting the dentist at least twice a year (every 6 months) for routine checkups and professional cleaning. Regular visits help detect early signs of cavities, gum disease, and other oral health issues before they become serious problems.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Are braces suitable for adults?
+        <div class="faq-icon"><i class="fa-solid fa-plus"></i></div>
+      </div>
+      <div class="faq-a">Absolutely! Braces and clear aligners are suitable for adults of all ages. At Dr. Smile, we offer both traditional metal braces and discreet clear aligners. There is no age limit for orthodontic treatment — it's never too late to achieve a straighter, more confident smile.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-text">Dr.<span>Smile</span> 🦷</div>
+      <p>Your trusted dental care partner in Indore. Modern treatments, gentle hands, and beautiful smiles — that's our promise to every patient.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/919111888227?text=Hello,%20I%20would%20like%20to%20book%20a%20dental%20appointment." class="social-btn"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:9111888227" class="social-btn"><i class="fa-solid fa-phone"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+        <li><a href="#about"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Services</a></li>
+        <li><a href="#testimonials"><i class="fa-solid fa-chevron-right"></i> Reviews</a></li>
+        <li><a href="#booking"><i class="fa-solid fa-chevron-right"></i> Book Appointment</a></li>
+        <li><a href="#faq"><i class="fa-solid fa-chevron-right"></i> FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Dental Services</h4>
+      <ul>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Teeth Cleaning</a></li>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Root Canal</a></li>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Teeth Whitening</a></li>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Dental Implants</a></li>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Braces & Aligners</a></li>
+        <li><a href="#services"><i class="fa-solid fa-chevron-right"></i> Smile Makeover</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <div class="contact-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Indore, Madhya Pradesh, India</span>
+      </div>
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <span><a href="tel:9111888227" style="color:inherit;text-decoration:none;">9111888227</a></span>
+      </div>
+      <div class="contact-item">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span><a href="https://wa.me/919111888227" style="color:inherit;text-decoration:none;">WhatsApp Us</a></span>
+      </div>
+      <div class="contact-item">
+        <i class="fa-regular fa-clock"></i>
+        <span>Mon–Sat: 9:00 AM – 8:00 PM</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Dr. Smile Dental Clinic, Indore. All rights reserved. &nbsp;|&nbsp; Designed with ❤️ for healthy smiles.
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<a href="https://wa.me/919111888227?text=Hello,%20I%20would%20like%20to%20book%20a%20dental%20appointment." class="fab-whatsapp" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+<a href="tel:9111888227" class="fab-call" title="Call Dr. Smile">
+  <i class="fa-solid fa-phone"></i>
+</a>
+<a href="tel:9111888227" class="sticky-call-bar">
+  <i class="fa-solid fa-phone"></i> Tap to Call: 9111888227
+</a>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function toggleFaq(el) {
+    const answer = el.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('active'));
+    if (!isOpen) { answer.classList.add('open'); el.classList.add('active'); }
+  }
+  function handleBooking() {
+    const name = document.querySelector('.booking-form input[type="text"]').value.trim();
+    if (!name) { alert('Please enter your name.'); return; }
+    alert('✅ Thank you, ' + name + '!\n\nYour appointment request has been received.\nWe will contact you shortly at Dr. Smile Dental Clinic.\n\n📞 For urgent queries: 9111888227');
+  }
+  // Sticky nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.boxShadow = window.scrollY > 30 ? '0 4px 30px rgba(10,122,255,0.13)' : '0 2px 20px rgba(10,122,255,0.08)';
+  });
+  // Close mobile menu on outside click
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('mobileMenu');
+    const hamburger = document.querySelector('.hamburger');
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
